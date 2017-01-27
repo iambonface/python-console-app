@@ -34,10 +34,10 @@ class Todo(object):
 				self.view_all()
 
 			elif self.choice == 3:
-				self.view_completed
+				self.view_completed()
 
 			elif self.choice == 4:
-				self.view_pending
+				self.view_pending()
 
 			elif self.choice == 5:
 				self.delete_skill()
@@ -97,10 +97,26 @@ class Todo(object):
 		print(self.view_table.table)
 
 	def view_pending(self):
-		pass
+
+		self.pending_dict = {key: value for key, value in self.skill_dict.items() if value == "Pending"}
+		self.key_list = [['Pending Courses']]
+		for key, value in self.pending_dict.items():
+			temp_key_list = [key]
+
+			self.key_list.append(temp_key_list)
+		self.view_pending_table = AsciiTable(self.key_list)
+		print(self.view_pending_table.table)
 
 	def view_completed(self):
-		pass
+		self.completed_dict = {key: value for key, value in self.skill_dict.items() if value == "Completed"}
+		self.total_completed = str(len(self.completed_dict))
+		self.key_list = [['{} Completed Courses'.format(self.total_completed)]]
+		for key, value in self.completed_dict.items():
+			temp_key_list = [key]
+
+			self.key_list.append(temp_key_list)
+		self.view_completed_table = AsciiTable(self.key_list)
+		print(self.view_completed_table.table)
 
 	def delete_skill(self):
 		pass
