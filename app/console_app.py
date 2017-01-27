@@ -1,3 +1,16 @@
+"""
+Console App
+
+It's useful to track personal learning progress when going through any learning program (like bootcamp). 
+This command line program, helps bootcamp participants to track their progress using the learning map. 
+As a user you can 
+    1. Add skills
+    2. View a list of all the skills added
+    3. View the list of skills that you have studied(completed)
+    4. View the list of skills that you haven't studied yet (Pending) and see the learning progress.
+
+"""
+
 from terminaltables import AsciiTable
 
 class Todo(object):
@@ -7,7 +20,7 @@ class Todo(object):
 		self.course =''
 		self.status =''
 
-	def helper(self):
+	def get_prompt(self):
 		Green= '\033[32m' #Green Text Color
 
 		self.choice = eval(input(
@@ -23,7 +36,7 @@ class Todo(object):
 			3. View Completed SKills
 			4. View Pending Skills
 
-			''' + B))
+			'''))
 
 		if type(self.choice) ==int:
 
@@ -41,12 +54,14 @@ class Todo(object):
 
 			elif self.choice == 5:
 				self.delete_skill()
+			else:
+				print("Wrong input value")
 
 		else:
 			raise TypeError('Invalid input {}'.format(type(self.choice)))
 
 	def add_skill(self):
-		self.skill_len = eval(input("How many skills to add: "))
+		self.skill_len = eval(input("How many skills do you want to add? "))
 
 		count = 0
 
@@ -77,13 +92,13 @@ class Todo(object):
 
 	def add_more_skill(self):
 
-		self.add_more = input("Do you want to add more skills?")
+		self.add_more = input("Do you want to add more skills? [y/n]: ")
 
 		if self.add_more == "y":
 			self.add_skill()
 
 		elif self.add_more == "n":
-			self.helper()
+			self.get_prompt()
 
 	def view_all(self):
 		self.new_skill_dict = [['Course', 'Status']]
@@ -133,4 +148,4 @@ class Todo(object):
 
 
 s = Todo()
-s.helper()
+s.get_prompt()
