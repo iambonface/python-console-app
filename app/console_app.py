@@ -1,4 +1,4 @@
-from terminaltable import AsciiTable
+from terminaltables import AsciiTable
 
 class Todo(object):
 
@@ -60,7 +60,17 @@ class Todo(object):
 
 			count +=1
 
-		print("Successfully added {}".format(self.skill_dict))
+		print('''You have successfully added  the following Courses''')
+
+		self.add_dict = [['Course', 'Status']]
+
+		for key, value in self.skill_dict.items():
+			temp_add_dict = [key, value]
+
+			self.add_dict.append(temp_add_dict)
+
+		self.add_table = AsciiTable(self.add_dict)
+		print(self.add_table.table)
 
 		self.add_more = input("Do you want to add more skills?")
 
@@ -73,7 +83,18 @@ class Todo(object):
 
 
 	def view_all(self):
-		pass
+		self.new_skill_dict = [['Course', 'Status']]
+
+		for key, value in self.skill_dict.items():
+
+			temp = [key, value]
+
+			self.new_skill_dict.append(temp)
+		
+		#print(list(self.new_skill_dict))
+
+		self.view_table = AsciiTable(self.new_skill_dict)
+		print(self.view_table.table)
 
 	def view_pending(self):
 		pass
