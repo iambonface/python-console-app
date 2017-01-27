@@ -112,7 +112,7 @@ class LearningMap(object):
 
 
 		self.view_table = AsciiTable(self.new_skill_dict)
-		print('\x1b[6;30;43m'+self.view_table.table)
+		print(self.view_table.table)
 
 		self.add_more_skill()
 
@@ -146,5 +146,5 @@ class LearningMap(object):
 		self.add_more_skill()
 
 
-s = LearningMap()
-s.get_prompt()
+lm = LearningMap()
+lm.get_prompt()
