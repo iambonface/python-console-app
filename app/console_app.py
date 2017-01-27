@@ -13,7 +13,7 @@ As a user you can
 
 from terminaltables import AsciiTable
 
-class Todo(object):
+class LearningMap(object):
 
 	def __init__(self):
 		self.skill_dict={}
@@ -26,7 +26,6 @@ class Todo(object):
 		self.choice = eval(input(
 			Green + 
 				'''
-
 			Welcome to my Console App
 		This app checks progress on various courses
 
@@ -147,5 +146,5 @@ class Todo(object):
 		self.add_more_skill()
 
 
-s = Todo()
+s = LearningMap()
 s.get_prompt()
