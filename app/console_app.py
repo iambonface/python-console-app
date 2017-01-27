@@ -8,8 +8,11 @@ class Todo(object):
 		self.status =''
 
 	def helper(self):
-		self.choice = eval(input('''
-		\x1b[6;30;46m +  
+		Green= '\033[32m' #Green Text Color
+
+		self.choice = eval(input(
+			Green + 
+				'''
 
 			Welcome to my Console App
 		This app checks progress on various courses
@@ -19,11 +22,8 @@ class Todo(object):
 			2. View All SKills
 			3. View Completed SKills
 			4. View Pending Skills
-			5. Delete a Skill
 
-			\x1b[0m
-
-			 '''))
+			''' + B))
 
 		if type(self.choice) ==int:
 
@@ -44,6 +44,7 @@ class Todo(object):
 
 		else:
 			raise TypeError('Invalid input {}'.format(type(self.choice)))
+
 	def add_skill(self):
 		self.skill_len = eval(input("How many skills to add: "))
 
@@ -72,6 +73,10 @@ class Todo(object):
 		self.add_table = AsciiTable(self.add_dict)
 		print(self.add_table.table)
 
+		self.add_more_skill()
+
+	def add_more_skill(self):
+
 		self.add_more = input("Do you want to add more skills?")
 
 		if self.add_more == "y":
@@ -79,8 +84,6 @@ class Todo(object):
 
 		elif self.add_more == "n":
 			self.helper()
-
-
 
 	def view_all(self):
 		self.new_skill_dict = [['Course', 'Status']]
@@ -93,8 +96,12 @@ class Todo(object):
 		
 		#print(list(self.new_skill_dict))
 
+
 		self.view_table = AsciiTable(self.new_skill_dict)
-		print(self.view_table.table)
+		print('\x1b[6;30;43m'+self.view_table.table)
+
+		self.add_more_skill()
+
 
 	def view_pending(self):
 
@@ -107,6 +114,9 @@ class Todo(object):
 		self.view_pending_table = AsciiTable(self.key_list)
 		print(self.view_pending_table.table)
 
+		self.add_more_skill()
+
+
 	def view_completed(self):
 		self.completed_dict = {key: value for key, value in self.skill_dict.items() if value == "Completed"}
 		self.total_completed = str(len(self.completed_dict))
@@ -115,11 +125,12 @@ class Todo(object):
 			temp_key_list = [key]
 
 			self.key_list.append(temp_key_list)
+
 		self.view_completed_table = AsciiTable(self.key_list)
 		print(self.view_completed_table.table)
 
-	def delete_skill(self):
-		pass
+		self.add_more_skill()
+
 
 s = Todo()
 s.helper()
