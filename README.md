@@ -1,6 +1,6 @@
 # PYTHON CONSOLE APP - A LearningMap(REWIRED)
 
-    This App is useful to track personal learning progress when going through any learning program (like bootcamp). 
+    This App is useful to track personal learning progress when going through any learning program eg bootcamp. 
     It helps bootcamp participants to track their progress using the learning map.
     The program was built as part of learning experience and bootcamp  self learning exercise.  
     As a user you can 
@@ -18,7 +18,8 @@
 	nose
 
 ## Dependencies
-	cd to the directory where requirements is located and run the below command to install all required packages/imports
+	cd to the directory where requirements is located
+	Run the below command to install all required packages/imports
 
     $ pip3 install -r requirements.txt
 
