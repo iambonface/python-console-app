@@ -24,7 +24,7 @@
     $ pip3 install -r requirements.txt
 
 ## Installation
-    $ git clone https://github.com/iambonface/andela-day0.git yourfoldername
+    $ git clone https://github.com/iambonface/python-console-app.git yourfoldername
 
 ## Quickstart 
     Running the program is easy
