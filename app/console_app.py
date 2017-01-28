@@ -22,10 +22,7 @@ class LearningMap(object):
 
 	def get_prompt(self):
 		Green= '\033[32m' #Green Text Color
-
-		self.choice = eval(input(
-			Green + 
-				'''
+		print('''
 			Welcome to my Console App
 		This app checks progress on various courses
 
@@ -34,45 +31,70 @@ class LearningMap(object):
 			2. View All SKills
 			3. View Completed SKills
 			4. View Pending Skills
+			''')
 
-			'''))
+		while True:
+			try:
+				self.choice = input(Green +	"Please select [1, 2, 3 or 4] ")
+				self.choice = int(self.choice)
+				self.get_method()
+				break
+			except ValueError:
+				print("INVALID INPUT. TRY AGAIN")
 
-		if type(self.choice) ==int:
+	def get_method(self):
 
-			if self.choice == 1:
-				self.add_skill()
+		if self.choice == 1:
+			self.add_skill()
 
-			elif self.choice == 2:
-				self.view_all()
+		elif self.choice == 2:
+			self.view_all()
 
-			elif self.choice == 3:
-				self.view_completed()
+		elif self.choice == 3:
+			self.view_completed()
 
-			elif self.choice == 4:
-				self.view_pending()
+		elif self.choice == 4:
+			self.view_pending()
 
-			elif self.choice == 5:
-				self.delete_skill()
-			else:
-				print("Wrong input value")
-
+		elif self.choice == 5:
+			self.delete_skill()
 		else:
-			raise TypeError('Invalid input {}'.format(type(self.choice)))
+			print("Invalid selection. You must select [1, 2, 3 or 4]")
+
 
 	def add_skill(self):
-		self.skill_len = eval(input("How many skills do you want to add? "))
+		while True:
+			try:
+				self.skill_len = input("How many skills do you want to add? ")
+				self.skill_len = int(self.skill_len)
+				if self.skill_len < 1:
+					print("You cannot add {}".format(self.skill_len))
+					self.add_skill()
+				else:
+					break
+
+			except ValueError:
+				print("Invalid input. This must be an Integer")
 
 		count = 0
 
 		while count < self.skill_len:
 			self.course = input("Add a Skill: ")
-			self.status = input("Is {} completed? [y/n]: ".format(self.course))
 
+			while True:
+				try:
+					self.status = input("Is {} completed? [y/n]: ".format(self.course))
+					self.status = str(self.status)
+					break
+				except ValueError:
+					print("Choose [y/n]")
 			if self.status == "y":
 				self.skill_dict[self.course] = "Completed"
 			elif self.status == "n":
 				self.skill_dict[self.course] = "Pending"
-
+			else:
+				print("Invalid selection. You must select [y/n]")
+	
 			count +=1
 
 		print('''You have successfully added  the following Courses''')
@@ -91,13 +113,23 @@ class LearningMap(object):
 
 	def add_more_skill(self):
 
-		self.add_more = input("Do you want to add more skills? [y/n]: ")
+		while True:
+			try:
+				self.add_more = input("Do you want to add more skills? [y/n]: ")
+				self.add_more = str(self.add_more)
+				break
+
+			except ValueError:
+				print("Choose [y/n]")
 
 		if self.add_more == "y":
 			self.add_skill()
 
 		elif self.add_more == "n":
 			self.get_prompt()
+		else:
+			print("Invalid selection. You must select [y/n]")
+			self.add_more_skill()
 
 	def view_all(self):
 		self.new_skill_dict = [['Course', 'Status']]
@@ -120,7 +152,8 @@ class LearningMap(object):
 	def view_pending(self):
 
 		self.pending_dict = {key: value for key, value in self.skill_dict.items() if value == "Pending"}
-		self.key_list = [['Pending Courses']]
+		self.total_pending = str(len(self.pending_dict))
+		self.key_list = [['{} Pending Courses'.format(self.total_pending)]]
 		for key, value in self.pending_dict.items():
 			temp_key_list = [key]
 
