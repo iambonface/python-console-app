@@ -17,6 +17,11 @@
 	Python 3
 	nose
 
+## Dependencies
+	cd to the directory where requirements is located and run the below command to install all required packages/imports
+
+    $ pip3 install -r requirements.txt
+
 ## Installation
     $ git clone https://github.com/iambonface/andela-day0.git yourfoldername
 
@@ -26,5 +31,11 @@
     $ python3 app/console_app.py
     
     
-## Packages Used
-    terminaltables 3.1.0 - To generate simple table in terminal from nested list
+## Packages built with
+    terminaltables 3.1.0
+    appdirs==1.4.0 
+	packaging==16.8 
+	pyparsing==2.1.10
+	six==1.10.0
+	terminaltables==3.1.0
+
