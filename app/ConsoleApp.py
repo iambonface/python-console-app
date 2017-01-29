@@ -21,21 +21,21 @@ class LearningMap(object):
 		self.status =''
 
 	def get_prompt(self):
-		Green= '\033[32m' #Green Text Color
+		#Green= '\033[32m' #Green Text Color
 		print('''
 			Welcome to my Console App
 		This app checks progress on various courses
 
-			Please select appropriately
 			1. Add a skill
 			2. View All SKills
 			3. View Completed SKills
 			4. View Pending Skills
+			5. View Statistics
 			''')
 
 		while True:
 			try:
-				self.choice = input(Green +	"Please select [1, 2, 3 or 4] ")
+				self.choice = input("Select 1, 2, 3 or 4 :")
 				self.choice = int(self.choice)
 				self.get_method()
 				break
@@ -57,7 +57,7 @@ class LearningMap(object):
 			self.view_pending()
 
 		elif self.choice == 5:
-			self.delete_skill()
+			self.view_statistics()
 		else:
 			print("Invalid selection. You must select [1, 2, 3 or 4]")
 
@@ -93,11 +93,11 @@ class LearningMap(object):
 			elif self.status == "n":
 				self.skill_dict[self.course] = "Pending"
 			else:
-				print("Invalid selection. You must select [y/n]")
+				print("\nInvalid selection. You must select [y/n]")
 	
 			count +=1
 
-		print('''You have successfully added  the following Courses''')
+		print("\nThe following following Courses were added correctly\n")
 
 		self.add_dict = [['Course', 'Status']]
 
@@ -131,6 +131,7 @@ class LearningMap(object):
 			print("Invalid selection. You must select [y/n]")
 			self.add_more_skill()
 
+
 	def view_all(self):
 		self.new_skill_dict = [['Course', 'Status']]
 
@@ -152,22 +153,37 @@ class LearningMap(object):
 	def view_pending(self):
 
 		self.pending_dict = {key: value for key, value in self.skill_dict.items() if value == "Pending"}
-		self.total_pending = str(len(self.pending_dict))
+
+		self.total_length = len(self.skill_dict.items())
+
+		self.pending_length = len(self.pending_dict)
+
+
+		self.total_pending = str(self.pending_length)
 		self.key_list = [['{} Pending Courses'.format(self.total_pending)]]
 		for key, value in self.pending_dict.items():
 			temp_key_list = [key]
 
 			self.key_list.append(temp_key_list)
+
 		self.view_pending_table = AsciiTable(self.key_list)
 		print(self.view_pending_table.table)
+
 
 		self.add_more_skill()
 
 
 	def view_completed(self):
 		self.completed_dict = {key: value for key, value in self.skill_dict.items() if value == "Completed"}
-		self.total_completed = str(len(self.completed_dict))
+
+		self.total_length = len(self.skill_dict.items())
+		
+
+		self.completed_length = len(self.completed_dict)
+
+		self.total_completed = str(self.completed_length)
 		self.key_list = [['{} Completed Courses'.format(self.total_completed)]]
+
 		for key, value in self.completed_dict.items():
 			temp_key_list = [key]
 
@@ -176,8 +192,50 @@ class LearningMap(object):
 		self.view_completed_table = AsciiTable(self.key_list)
 		print(self.view_completed_table.table)
 
+
 		self.add_more_skill()
+
+	def view_statistics(self):
+		self.completed_dict = {key: value for key, value in self.skill_dict.items() if value == "Completed"}
+
+		self.pending_dict = {key: value for key, value in self.skill_dict.items() if value == "Pending"}
+
+		self.pending_length = len(self.pending_dict)
+
+		self.completed_length = len(self.completed_dict)
+
+		self.total_length = len(self.skill_dict.items())
+
+		if self.total_length < 1:
+			print("No courses were added. We cannot figure out statistics with 0 courses")
+			self.add_more_skill()
+
+		elif self.completed_length == 0:
+			print("You currently only have {} pending course".format(self.pending_length))
+			self.add_more_skill()
+
+
+		elif self.pending_length == 0:
+			print("You currently only have {} completed sourse".format(self.completed_length))
+			self.add_more_skill()
+
+
+		else:
+			self.percentage_pending =  ((self.pending_length/self.total_length) * 100)
+			self.percentage_completed =  ((self.completed_length/self.total_length) * 100)
+
+			print("\n{} Total Courses \n".format(self.total_length))
+
+			
+			print('%.0f' % (self.percentage_completed) + '% Completed')
+
+			print('%.0f' % (self.percentage_pending)  + '% Pending\n')
+
+
+
 
 
 lm = LearningMap()
+
+
 lm.get_prompt()
