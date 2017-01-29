@@ -8,6 +8,7 @@
     2. View a list of all the skills added
     3. View the list of skills that you have studied(completed)
     4. View the list of skills that you haven't studied yet (Pending) and see the learning progress.
+    5. View the statistics of your learning progress
     
 ## Getting Started
   With a single line of command, the program should run as expected.
@@ -15,7 +16,6 @@
 
 ##Prerequisites
 	Python 3
-	nose
 
 ## Dependencies
 	cd to the directory where requirements is located
@@ -29,14 +29,13 @@
 ## Quickstart 
     Running the program is easy
     $ cd yourfoldername
-    $ python3 app/console_app.py
+    $ python3 app/ConsoleApp.py
     
     
-## Packages built with
+## Packages
     terminaltables 3.1.0
     appdirs==1.4.0 
 	packaging==16.8 
 	pyparsing==2.1.10
 	six==1.10.0
-	terminaltables==3.1.0
 
