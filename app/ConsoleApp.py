@@ -20,6 +20,11 @@ class LearningMap(object):
 		self.course =''
 		self.status =''
 
+
+	def get_input(self,text):
+		return input(text)
+
+
 	def get_prompt(self):
 		#Green= '\033[32m' #Green Text Color
 		print('''
@@ -35,7 +40,7 @@ class LearningMap(object):
 
 		while True:
 			try:
-				self.choice = input("Select 1, 2, 3 or 4 :")
+				self.choice = self.get_input("Select 1, 2, 3 or 4 :")
 				self.choice = int(self.choice)
 				self.get_method()
 				break
