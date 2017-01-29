@@ -10,6 +10,7 @@ As a user you can
     4. View the list of skills that you haven't studied yet (Pending) and see the learning progress.
 
 """
+import sys
 
 from terminaltables import AsciiTable
 
@@ -36,11 +37,12 @@ class LearningMap(object):
 			3. View Completed SKills
 			4. View Pending Skills
 			5. View Statistics
+			6. Exit
 			''')
 
 		while True:
 			try:
-				self.choice = self.get_input("Select 1, 2, 3 or 4 :")
+				self.choice = self.get_input("Select 1, 2, 3, 4, 5, 6:")
 				self.choice = int(self.choice)
 				self.get_method()
 				break
@@ -63,6 +65,9 @@ class LearningMap(object):
 
 		elif self.choice == 5:
 			self.view_statistics()
+
+		elif self.choice ==6:
+			sys.exit()
 		else:
 			print("Invalid selection. You must select [1, 2, 3 or 4]")
 
@@ -244,3 +249,5 @@ lm = LearningMap()
 
 
 lm.get_prompt()
+
+
