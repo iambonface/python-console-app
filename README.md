@@ -1,4 +1,4 @@
-# PYTHON CONSOLE APP - A LearningMap(REWIRED)
+# PYTHON CONSOLE APP - A LearningMap(REWIRED) [![Build Status](https://travis-ci.org/iambonface/python-console-app.png?branch=master)](https://travis-ci.org/iambonface/python-console-app)
 
     This App is useful to track personal learning progress when going through any learning program eg bootcamp. 
     It helps bootcamp participants to track their progress using the learning map.
